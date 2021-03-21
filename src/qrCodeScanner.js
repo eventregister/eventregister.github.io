@@ -32,7 +32,7 @@ theqrcode.callback = res => {
 };
 
 btnScanQR.onclick = () => {
-  while (prefilled == "" || prefilled == null) {
+  while (prefilled == "null") {
     prefilled = window.prompt("輸入報到連結："); 
   }
   navigator.mediaDevices
