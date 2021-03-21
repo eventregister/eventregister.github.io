@@ -18,22 +18,24 @@ let scanning = false;
 
 theqrcode.callback = res => {
   if (res) {
-    outputData.innerText = res;
-    var linkurl = prefilled + res;
-    window.location.href = linkurl;
-    
-    scanning = false;
-    video.srcObject.getTracks().forEach(track => {
-      track.stop();
-    });
-    qrResult.hidden = false;
-    canvasElement.hidden = true;
-    btnScanQR.hidden = false;
+    if (prefilled == "null" || prefilled == null || prefilled == "") {
+      outputData.innerText = res;
+      scanning = false;
+      video.srcObject.getTracks().forEach(track => {
+        track.stop();
+      });
+      qrResult.hidden = false;
+      canvasElement.hidden = true;
+      btnScanQR.hidden = false;
+    } else {
+      var linkurl = prefilled + res;
+      window.location.href = linkurl;
+    }
   }
 };
 
 btnScanQR.onclick = () => {
-  while (prefilled == "null" || prefilled == null || prefilled == "") {
+  if (prefilled == "null" || prefilled == null || prefilled == "") {
     prefilled = window.prompt("輸入報到連結："); 
   }
   navigator.mediaDevices
