@@ -12,6 +12,7 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 var prefilled = urlParams.get("prefilled");
 prefilled = decodeURIComponent(prefilled);
+// console.log(prefilled);
 
 let scanning = false;
 
@@ -32,7 +33,7 @@ theqrcode.callback = res => {
 };
 
 btnScanQR.onclick = () => {
-  while (prefilled == "null") {
+  while (prefilled == "null" || prefilled == null) {
     prefilled = window.prompt("輸入報到連結："); 
   }
   navigator.mediaDevices
